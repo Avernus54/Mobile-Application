@@ -3,7 +3,6 @@ import 'package:flutter_application_1/LoginForms/login.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_application_1/services/SessionManager.dart';
 import 'package:provider/provider.dart';
-import 'screens/petsPage.dart';
 import 'screens/dashboard.dart';
 import 'screens/healthOverview.dart';
 import 'screens/expenses.dart';
@@ -13,7 +12,7 @@ Future<String?> getFullname() async {
   final user = supabase.auth.currentUser;
 
   if (user == null) return null;
-
+  
   final response = await supabase
       .from('profiles')
       .select('fullname')
@@ -65,12 +64,12 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = const [
-    DashboardPage(),
+  final List<Widget> _pages = [
+    const DashboardPage(),
     PetsPage(),
-    HealthOverviewPage(),
-    ExpensesPage(),
-    SettingsPage(),
+    const HealthOverviewPage(),
+    const ExpensesPage(),
+     SettingsScreen(),
   ];
 
   void _onTabTapped(int index) {
